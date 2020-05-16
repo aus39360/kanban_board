@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import './List.css'
 import Card from '../Card'
-import Button from '../Button'
+import TrelloButton from '../TrelloButton'
 
 
-const List = ({ title, cards}) => {
+const List = ({ title, cards, listId}) => {
     return (
         <div className='List'>
             <h3>{title}</h3>
             {cards.map(card => <Card key={card.id} text={card.text} />)}
-            <Button />
+            <TrelloButton listId={listId} />
         </div>
     )
 }
