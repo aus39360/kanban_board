@@ -3,9 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 import {CONSTANTS} from '../actions'
 
 
-let listId = uuidv4()
-let cardId = uuidv4()
-
 const initialState = [
   {
     title:'Планы на месяц',
@@ -51,16 +48,14 @@ const board = (state = initialState, action) => {
         const newList = {
           title: action.payload,
           cards: [],
-          id: listId
+          id: uuidv4()
         }
-        /* listId = uuidv4() */
         return [...state, newList]
       case CONSTANTS.ADD_CARD: {
         const newCard = {
           text: action.payload.text,
-          id: cardId
+          id: uuidv4()
         }
-        /* cardId = uuidv4() */
         
         const newState = state.map(list=>{
           if ( list.id === action.payload.listId ) {
@@ -81,15 +76,33 @@ const board = (state = initialState, action) => {
             droppableIdEnd,
             droppableIndexStart,
             droppableIndexEnd,
-            draggableId
+            type
           } = action.payload
           
           const newState = [...state];
 
+//////////////////////
+          if(type === 'list') {
+            const list = newState.splice(droppableIndexStart, 1)
+            newState.splice(droppableIndexEnd, 0, ...list)
+            return newState;
+          }
+
+//////////////////////
           if(droppableIdStart === droppableIdEnd) {
             const list = state.find(list=> droppableIdStart === list.id)
-            const card = list.splice(droppableIndexStart, 1)
-            list.cards.splice(droppableIndexEnd, 0, ...card)
+            const card = list.cards.splice(droppableIndexStart, 1)
+            list.cards.splice(droppableIndexEnd, 0, ...card);
+          }
+//////////////////////
+          if(droppableIdStart !== droppableIdEnd) {
+            const listStart = state.find(list => droppableIdStart === list.id)
+
+            const card = listStart.cards.splice(droppableIndexStart, 1)
+
+            const listEnd = state.find(list => droppableIdEnd === list.id)
+
+            listEnd.cards.splice(droppableIndexEnd, 0, ...card)
           }
 
           return newState;

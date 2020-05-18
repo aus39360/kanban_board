@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
 import List from '../List'
 import TrelloButton from '../TrelloButton'
@@ -14,7 +14,7 @@ class Board extends Component {
       this.state = { }
   }
   onDragEnd = (result) => {
-    const { destination, source, draggableId} = result
+    const { destination, source, draggableId, type} = result
 
     if(!destination) {
       return;
@@ -26,7 +26,8 @@ class Board extends Component {
         destination.droppableId,
         source.index,
         destination.index,
-        draggableId
+        draggableId,
+        type
       )
     )
   }
@@ -35,10 +36,21 @@ class Board extends Component {
     const { board } = this.props
     return(
       <DragDropContext onDragEnd={this.onDragEnd}>
-              <div className='Board'>
-                {board.map(list => <List listId={list.id} key={list.id} title={list.title} cards={list.cards} />)}
-                <TrelloButton list />
-              </div>
+        <div>
+          <Droppable droppableId='all-lists' direction='horizontal' type='list'>
+            {(provided) => (
+                <div 
+                  className='Board'
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                    {board.map((list, index) => <List listId={list.id} key={list.id} title={list.title} cards={list.cards} index={index} />)}
+                    <TrelloButton list />
+                    {provided.placeholder}
+                </div>
+            )}
+          </Droppable>
+        </div>
       </DragDropContext>
     )
   }

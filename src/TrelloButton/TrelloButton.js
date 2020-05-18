@@ -59,7 +59,7 @@ class TrelloButton extends Component {
                     display: 'flex', 
                     alignItems:'center', 
                     cursor: 'pointer',
-                    height: '100%',
+                    height: '30px',
                     opacity: buttonTextOpassity, 
                     color:buttonTextColor, 
                     backgroundColor: buttonTextBackground 
