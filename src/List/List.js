@@ -1,12 +1,21 @@
 import React from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import { connect } from 'react-redux'
 
 import './List.css'
 import TrelloCard from '../TrelloCard'
 import TrelloButton from '../TrelloButton'
+import { deleteList } from "../actions";
 
 
-const List = ({ title, cards, listId, index}) => {
+const List = ({ title, cards, listId, index, dispatch}) => {
+
+    const handleDeleteList = () => {
+        dispatch(deleteList(listId));
+    };
+
     return (
         <Draggable draggableId={String(listId)} index={index}>
             {(provided, snapshot) => (
@@ -23,7 +32,13 @@ const List = ({ title, cards, listId, index}) => {
                                 style={{}}
                             >
                                 <h3>{title}</h3>
-                                {cards.map((card, index) => <TrelloCard key={card.id} index={index} text={card.text} id={card.id} />)}
+                                <button onMouseDown={handleDeleteList}>
+                                    <DeleteIcon></DeleteIcon>
+                                </button>
+                                <button>
+                                    <EditIcon></EditIcon>
+                                </button>
+                                {cards.map((card, index) => <TrelloCard key={card.id} index={index} text={card.text} id={card.id} listId={listId} />)}
                                 <TrelloButton listId={listId} />
                                 {provided.placeholder}
                             </div>
@@ -35,4 +50,4 @@ const List = ({ title, cards, listId, index}) => {
     )
 }
 
-export default List
+export default connect()(List);

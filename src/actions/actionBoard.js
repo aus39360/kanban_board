@@ -2,6 +2,8 @@ import {CONSTANTS} from './index'
 
 export const addList = (title) => { return {type: CONSTANTS.ADD_LIST, payload: title}}
 
+export const deleteList = (listId) => { return { type: CONSTANTS.DELETE_LIST, payload: { listId }};};
+
 export const sort = (
     droppableIdStart,
     droppableIdEnd,

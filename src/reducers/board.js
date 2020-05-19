@@ -51,11 +51,18 @@ const board = (state = initialState, action) => {
           id: uuidv4()
         }
         return [...state, newList]
+
+      case CONSTANTS.DELETE_LIST: {
+        const { listId } = action.payload;
+        const newState = state.filter(i=> i.id !== listId)
+        return newState;
+      }
+      
       case CONSTANTS.ADD_CARD: {
         const newCard = {
           text: action.payload.text,
           id: uuidv4()
-        }
+      }
         
         const newState = state.map(list=>{
           if ( list.id === action.payload.listId ) {
@@ -70,7 +77,19 @@ const board = (state = initialState, action) => {
 
           return newState;
         }
-        case CONSTANTS.DRAG_HAPPENED:
+
+      case CONSTANTS.DELETE_CARD:{
+        const { id, listId } = action.payload;
+        const newState = state.map((i)=>{ 
+          if(i.id !== listId ) {
+              return i
+          } else {
+           return {...i, cards: i.cards.filter(i=> i.id !== id)}
+          }})
+          return newState
+      }
+
+      case CONSTANTS.DRAG_HAPPENED:
           const {
             droppableIdStart,
             droppableIdEnd,
