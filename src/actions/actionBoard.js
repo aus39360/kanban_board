@@ -4,6 +4,8 @@ export const addList = (title) => { return {type: CONSTANTS.ADD_LIST, payload: t
 
 export const deleteList = (listId) => { return { type: CONSTANTS.DELETE_LIST, payload: { listId }};};
 
+export const editTitle = (listId, newTitle) => {return {type: CONSTANTS.EDIT_LIST_TITLE, payload: {listId,newTitle}};};
+
 export const sort = (
     droppableIdStart,
     droppableIdEnd,

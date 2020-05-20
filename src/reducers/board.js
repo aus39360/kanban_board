@@ -57,6 +57,17 @@ const board = (state = initialState, action) => {
         const newState = state.filter(i=> i.id !== listId)
         return newState;
       }
+
+      case CONSTANTS.EDIT_LIST_TITLE: {
+        const { listId, newTitle } = action.payload;
+        const newState = state.map((i)=>{ 
+          if(i.id === listId ) {
+              return {...i, title: newTitle }
+          } else {
+            return i
+          }})
+          return newState
+      }
       
       case CONSTANTS.ADD_CARD: {
         const newCard = {
@@ -85,6 +96,25 @@ const board = (state = initialState, action) => {
               return i
           } else {
            return {...i, cards: i.cards.filter(i=> i.id !== id)}
+          }})
+          return newState
+      }
+
+      case CONSTANTS.EDIT_CARD: {
+        const { id, listId, newText } = action.payload;
+        const newState = state.map((i)=>{ 
+          
+          if(i.id !== listId ) {
+              return i
+          } else {
+           return {...i, cards: i.cards.map(i=> {
+             
+            if(i.id === id) {
+              return {...i, text: newText }
+             } else {
+               return i
+             }
+           })}
           }})
           return newState
       }
