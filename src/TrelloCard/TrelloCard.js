@@ -6,7 +6,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
 import { connect } from "react-redux";
 
-import './TrelloCard.css'
+import './TrelloCard.scss'
 import {editCard, deleteCard } from "../actions";
 
 
@@ -60,14 +60,16 @@ const TrelloCard = ({ text, id, listId, index, dispatch }) => {
                         ...provided.draggableProps.style
                         }} */
                     >
-                        <Card>
-                            <p>{text}</p>
-                            <button onMouseDown={handleDeleteCard}>
-                                <DeleteIcon></DeleteIcon>
-                            </button>
-                            <button onClick={() => setIsEditing(true)}>
-                                <EditIcon></EditIcon>
-                            </button>
+                        <Card className='card'>
+                            <p className='card__text'>{text}</p>
+                            <div className='card-btn'>
+                                <button className='card-btn__edit' onMouseDown={handleDeleteCard}>
+                                    <DeleteIcon className='icon-delete'></DeleteIcon>
+                                </button>
+                                <button className='card-btn__delete' onClick={() => setIsEditing(true)}>
+                                    <EditIcon className='icon-edit'></EditIcon>
+                                </button>
+                            </div>
                         </Card>
                     </div> 
                 )}

@@ -1,0 +1,42 @@
+.card {
+    display: flex;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: start;
+    width: 280px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 4px rgba(9, 45, 66, 0.25);
+    border-radius: 5px;
+
+    &__text {
+        margin: 0;
+        padding: 10px 0 10px 10px;
+        overflow:hidden;
+    }
+}
+
+.card-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    &__delete,
+    &__edit {
+        border: none;
+        background: #FFFFFF;
+        cursor: pointer;
+
+        .icon-edit,
+        .icon-delete {
+            color: #7f8c8d;
+            font-size: 17px;
+        }
+        .icon-edit:hover {
+            color: #009432;
+        }
+        .icon-delete:hover {
+            color: #EA2027;
+        }
+    }
+}

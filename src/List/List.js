@@ -5,7 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
 import { connect } from 'react-redux'
 
-import './List.css'
+import './List.scss'
 import TrelloCard from '../TrelloCard'
 import TrelloButton from '../TrelloButton'
 import { editTitle,deleteList } from "../actions";
@@ -17,25 +17,27 @@ const List = ({ title, cards, listId, index, dispatch}) => {
 
     const renderEditInput = () => {
         return (
-          <form onSubmit={handleFinishEditing}>
+          <form className='form' onSubmit={handleFinishEditing}>
             <input
-              type="text"
-              value={listTitle}
-              onChange={handleChange}
+                className='form__edit-input'
+                type="text"
+                value={listTitle}
+                onChange={handleChange}
             />
             <button>
-                <CheckIcon></CheckIcon>
+                <CheckIcon className='icon'></CheckIcon>
             </button>
           </form>
         );
     };
 
     const handleChange = e => {
-/*         e.preventDefault(); */
         setListTitle(e.target.value);
       };
 
     const handleFinishEditing = e => {
+        e.preventDefault();
+
         setIsEditing(false);
         dispatch(editTitle(listId, listTitle));
     };
@@ -62,19 +64,21 @@ const List = ({ title, cards, listId, index, dispatch}) => {
                                 {isEditing ? (
                                     renderEditInput()
                                 ) : (
-                                    <div>
-                                        <h3>{title}</h3>
-                                        <button onClick={handleDeleteList}>
-                                            <DeleteIcon></DeleteIcon>
-                                        </button>
-                                        <button onClick={() => setIsEditing(true)}>
-                                            <EditIcon></EditIcon>
-                                        </button>
+                                    <div className='list-heading'>
+                                        <h3 className='list-heading__title'>{title}</h3>
+                                        <div className='list-btn'>
+                                            <button className='list-btn__edit' onClick={() => setIsEditing(true)}>
+                                                <EditIcon className='icon-edit'></EditIcon>
+                                            </button>
+                                            <button className='list-btn__delete' onClick={handleDeleteList}>
+                                                <DeleteIcon className='icon-delete'></DeleteIcon>
+                                            </button>
+                                        </div>
                                     </div>
                                 )}
                                     {cards.map((card, index) => <TrelloCard key={card.id} index={index} text={card.text} id={card.id} listId={listId} />)}
-                                    <TrelloButton listId={listId} />
                                     {provided.placeholder}
+                                    <TrelloButton listId={listId} />
                             </div>
                         )}
                     </Droppable>

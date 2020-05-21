@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import CloseIcon from '@material-ui/icons/Close';
 import {connect} from 'react-redux'
 
+import './TrelloButton.scss'
 import { addList, addCard} from '../actions'
 
 
@@ -48,25 +49,15 @@ class TrelloButton extends Component {
         const { list } = this.props
 
         const buttonText = list ? "Добавить еще одну колонку" : "Добавить еще одну карточку";
-        const buttonTextOpassity = list ? 1 : 0.5;
-        const buttonTextColor = list ? 'white' : 'inherit';
-        const buttonTextBackground = list ? 'rgba(0,0,0,.15)' : 'inherit'
 
         return(
-            <div
+            <button
                 onClick={this.openForm}
-                style={{ 
-                    display: 'flex', 
-                    alignItems:'center', 
-                    cursor: 'pointer',
-                    height: '30px',
-                    opacity: buttonTextOpassity, 
-                    color:buttonTextColor, 
-                    backgroundColor: buttonTextBackground 
-                }}>
+                className='add-button'
+            >
                 <AddIcon></AddIcon>
                 <p>{buttonText}</p>
-            </div>
+            </button>
         )
     }
     
@@ -78,14 +69,8 @@ class TrelloButton extends Component {
         const   buttonTitle = list ? 'Добавить колонку' : 'Добавить карточку'
 
         return (
-            <div>
-                <Card
-                    style={{
-                        minHeight: 85,
-                        minWidth: 272,
-                        padding: '6px 8px 2px'
-                    }}
-                >
+            <div className='container'>
+                <Card className='container__card'>
                     <TextareaAutosize
                         placeholder={placeholder}
                         autoFocus
@@ -95,18 +80,21 @@ class TrelloButton extends Component {
                             resize: 'none',
                             width: '100%',
                             outline: 'none',
-                            border: 'none'
+                            border: 'none',
+                            overflow: 'hidden',
+                            fontSize: 16
                         }}
                     />
                 </Card>
-                <div style={{display:'flex', justifyContent:'space-between'}}>
+                <div className='container-btn'>
                     <Button 
                         onMouseDown={ list ? this.handleAddList : this.handleAddCard}
                         variant="contained" 
-                        style={{color: 'white', backgroundColor: '#2ecc71'}}>
+                        style={{color: 'white', backgroundColor: '#2ecc71', fontWeight: 'bold'}}
+                    >
                         {buttonTitle}
                     </Button>
-                    <CloseIcon style={{cursor: 'pointer', fontSize: 36 }}> </CloseIcon>
+                    <CloseIcon className='icon' onClick={this.closeForm}> </CloseIcon>
                 </div>
             </div>
         )

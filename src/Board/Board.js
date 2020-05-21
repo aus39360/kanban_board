@@ -4,7 +4,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
 import List from '../List'
 import TrelloButton from '../TrelloButton'
-import './Board.css'
+import './Board.scss'
 import {  sort } from '../actions'
 
 
@@ -45,8 +45,8 @@ class Board extends Component {
                   ref={provided.innerRef}
                 >
                     {board.map((list, index) => <List listId={list.id} key={list.id} title={list.title} cards={list.cards} index={index} />)}
-                    <TrelloButton list />
                     {provided.placeholder}
+                    <TrelloButton list />
                 </div>
             )}
           </Droppable>
