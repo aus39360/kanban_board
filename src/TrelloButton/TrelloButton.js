@@ -78,6 +78,7 @@ class TrelloButton extends Component {
                         onChange={this.handleChange}
                         style={{
                             resize: 'none',
+                            padding: '10px',
                             width: '100%',
                             outline: 'none',
                             border: 'none',

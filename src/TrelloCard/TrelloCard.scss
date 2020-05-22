@@ -4,7 +4,7 @@
     margin-bottom: 10px;
     text-align: start;
     width: 280px;
-    background: #FFFFFF;
+    background-color: #FFFFFF;
     box-shadow: 0px 1px 4px rgba(9, 45, 66, 0.25);
     border-radius: 5px;
 
@@ -37,6 +37,31 @@
         }
         .icon-delete:hover {
             color: #EA2027;
+        }
+    }
+}
+
+.form-card {
+    display: flex;
+    background-color: #DFE3E6;
+    width: 280px;
+    min-height: 40px;
+    
+    &__edit-input {
+        padding: 5px;
+        margin: 0 10px 10px 10px;
+        min-height: 35px;
+        width: 240px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    &__btn {
+        border: none;
+        background: #DFE3E6;
+        cursor: pointer;
+        
+        .icon:hover {
+            color: #009432;
         }
     }
 }

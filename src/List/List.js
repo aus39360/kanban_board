@@ -24,7 +24,7 @@ const List = ({ title, cards, listId, index, dispatch}) => {
                 value={listTitle}
                 onChange={handleChange}
             />
-            <button>
+            <button className='form-btn'>
                 <CheckIcon className='icon'></CheckIcon>
             </button>
           </form>

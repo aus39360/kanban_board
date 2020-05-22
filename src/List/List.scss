@@ -49,13 +49,26 @@
 
 
 .form {
+    display: flex;
     background-color: #DFE3E6;
-    width: 300px;
-    min-height: 100px;
-    border-radius: 5px;
+    width: 280px;
+    min-height: 45px;
     &__edit-input {
+        padding: 5px;
         margin: 10px;
-        min-height: 45px;
+        min-height: 40px;
         width: 240px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+.form-btn {
+    border: none;
+    background: #DFE3E6;
+    cursor: pointer;
+    
+    .icon:hover {
+        color: #009432;
     }
 }

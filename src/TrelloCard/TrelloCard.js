@@ -20,14 +20,15 @@ const TrelloCard = ({ text, id, listId, index, dispatch }) => {
     
     const renderEditInput = () => {
         return (
-          <form onSubmit={saveCard}>
+          <form className='form-card' onSubmit={saveCard}>
             <input
-              type="text"
-              value={cardText}
-              onChange={handleChange}
+                className='form-card__edit-input'
+                type="text"
+                value={cardText}
+                onChange={handleChange}
             />
-            <button>
-                <CheckIcon></CheckIcon>
+            <button className='form-card__btn'>
+                <CheckIcon className='icon'></CheckIcon>
             </button>
           </form>
         );

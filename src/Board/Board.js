@@ -38,7 +38,7 @@ class Board extends Component {
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div>
           <Droppable droppableId='all-lists' direction='horizontal' type='list'>
-            {(provided) => (
+            {(provided, snapshot) => (
                 <div 
                   className='Board'
                   {...provided.droppableProps}
