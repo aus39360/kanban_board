@@ -1,10 +1,10 @@
-TestEmis
+#h1 Kanban board
 Author Dan Burbelo
 
-Installation
+Installation    
 Before start you need Node.js. Install the dependencies and devDependencies and start the server.
 
-$ cd /testEmis
+$ cd /kanbn_board
 $ npm install
 $ npm start
 Server running on http://localhost:9000/
