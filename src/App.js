@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 
-import './App.css'
+import classNames from './App.scss'
 import Board from './Board'
 import rootReducer from './reducers'
 
@@ -26,7 +26,7 @@ const store = createStore(rootReducer,enhancer)
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
+      <div className={classNames.App}>
         <Board />
       </div>
     </Provider>

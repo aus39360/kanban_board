@@ -6,7 +6,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
 import { connect } from "react-redux";
 
-import './TrelloCard.scss'
+import classNames from './TrelloCard.scss'
 import {editCard, deleteCard } from "../actions";
 
 
@@ -20,15 +20,15 @@ const TrelloCard = ({ text, id, listId, index, dispatch }) => {
     
     const renderEditInput = () => {
         return (
-          <form className='form-card' onSubmit={saveCard}>
+          <form className={classNames['form-card']} onSubmit={saveCard}>
             <input
-                className='form-card__edit-input'
+                className={classNames['form-card__edit-input']}
                 type="text"
                 value={cardText}
                 onChange={handleChange}
             />
-            <button className='form-card__btn'>
-                <CheckIcon className='icon'></CheckIcon>
+            <button className={classNames['form-card__btn']}>
+                <CheckIcon className={classNames.icon}></CheckIcon>
             </button>
           </form>
         );
@@ -61,14 +61,14 @@ const TrelloCard = ({ text, id, listId, index, dispatch }) => {
                         ...provided.draggableProps.style
                         }} */
                     >
-                        <Card className='card'>
-                            <p className='card__text'>{text}</p>
-                            <div className='card-btn'>
-                                <button className='card-btn__edit' onMouseDown={handleDeleteCard}>
-                                    <DeleteIcon className='icon-delete'></DeleteIcon>
+                        <Card className={classNames.card}>
+                            <p className={classNames['card__text']}>{text}</p>
+                            <div className={classNames['card-btn']}>
+                                <button className={classNames['card-btn__edit']} onMouseDown={handleDeleteCard}>
+                                    <DeleteIcon className={classNames['icon-delete']}></DeleteIcon>
                                 </button>
-                                <button className='card-btn__delete' onClick={() => setIsEditing(true)}>
-                                    <EditIcon className='icon-edit'></EditIcon>
+                                <button className={classNames['card-btn__delete']} onClick={() => setIsEditing(true)}>
+                                    <EditIcon className={classNames['icon-edit']}></EditIcon>
                                 </button>
                             </div>
                         </Card>

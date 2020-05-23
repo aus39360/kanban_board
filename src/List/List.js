@@ -5,27 +5,27 @@ import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
 import { connect } from 'react-redux'
 
-import './List.scss'
+import classNames from './List.scss'
 import TrelloCard from '../TrelloCard'
 import TrelloButton from '../TrelloButton'
 import { editTitle,deleteList } from "../actions";
 
 
-const List = ({ title, cards, listId, index, dispatch}) => {
+const List = ({ title, cards, listId, index, dispatch }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [listTitle, setListTitle] = useState(title);
 
     const renderEditInput = () => {
         return (
-          <form className='form' onSubmit={handleFinishEditing}>
+          <form className={classNames.form} onSubmit={handleFinishEditing}>
             <input
-                className='form__edit-input'
+                className={classNames['form__edit-input']}
                 type="text"
                 value={listTitle}
                 onChange={handleChange}
             />
-            <button className='form-btn'>
-                <CheckIcon className='icon'></CheckIcon>
+            <button className={classNames['form-btn']}>
+                <CheckIcon className={classNames.icon}></CheckIcon>
             </button>
           </form>
         );
@@ -56,7 +56,7 @@ const List = ({ title, cards, listId, index, dispatch}) => {
                 >
                     <Droppable droppableId={String(listId)}>
                         {(provided)=> (
-                            <div className='List'
+                            <div className={classNames.List}
                                 {...provided.droppableProps}
                                 ref={provided.innerRef}
                                 style={{}}
@@ -64,14 +64,14 @@ const List = ({ title, cards, listId, index, dispatch}) => {
                                 {isEditing ? (
                                     renderEditInput()
                                 ) : (
-                                    <div className='list-heading'>
-                                        <h3 className='list-heading__title'>{title}</h3>
-                                        <div className='list-btn'>
-                                            <button className='list-btn__edit' onClick={() => setIsEditing(true)}>
-                                                <EditIcon className='icon-edit'></EditIcon>
+                                    <div className={classNames['list-heading']}>
+                                        <h3 className={classNames['list-heading__title']}>{title}</h3>
+                                        <div className={classNames['list-btn']}>
+                                            <button className={classNames['list-btn__edit']} onClick={() => setIsEditing(true)}>
+                                                <EditIcon className={classNames['icon-edit']}></EditIcon>
                                             </button>
-                                            <button className='list-btn__delete' onClick={handleDeleteList}>
-                                                <DeleteIcon className='icon-delete'></DeleteIcon>
+                                            <button className={classNames['list-btn__delete']} onClick={handleDeleteList}>
+                                                <DeleteIcon className={classNames['icon-delete']}></DeleteIcon>
                                             </button>
                                         </div>
                                     </div>

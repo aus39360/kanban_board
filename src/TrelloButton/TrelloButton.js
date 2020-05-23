@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import CloseIcon from '@material-ui/icons/Close';
 import {connect} from 'react-redux'
 
-import './TrelloButton.scss'
+import classNames from './TrelloButton.scss'
 import { addList, addCard} from '../actions'
 
 
@@ -53,7 +53,7 @@ class TrelloButton extends Component {
         return(
             <button
                 onClick={this.openForm}
-                className='add-button'
+                className={classNames['add-button']}
             >
                 <AddIcon></AddIcon>
                 <p>{buttonText}</p>
@@ -69,8 +69,8 @@ class TrelloButton extends Component {
         const   buttonTitle = list ? 'Добавить колонку' : 'Добавить карточку'
 
         return (
-            <div className='container'>
-                <Card className='container__card'>
+            <div className={classNames.container}>
+                    <Card className={classNames['container__card']}>
                     <TextareaAutosize
                         placeholder={placeholder}
                         autoFocus
@@ -87,7 +87,7 @@ class TrelloButton extends Component {
                         }}
                     />
                 </Card>
-                <div className='container-btn'>
+                <div className={classNames['container-btn']}>
                     <Button 
                         onMouseDown={ list ? this.handleAddList : this.handleAddCard}
                         variant="contained" 
@@ -95,7 +95,7 @@ class TrelloButton extends Component {
                     >
                         {buttonTitle}
                     </Button>
-                    <CloseIcon className='icon' onClick={this.closeForm}> </CloseIcon>
+                    <CloseIcon className={classNames.icon} onClick={this.closeForm}> </CloseIcon>
                 </div>
             </div>
         )
