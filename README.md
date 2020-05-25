@@ -3,7 +3,7 @@
 ##### Author: [Dan Burbelo](https://github.com/aus39360)
 -------
 ### Installation    
-Before start you need [Node.js.](https://nodejs.org/en/) Install the dependencies and devDependencies and start the server.
+Before start you need [Node.js.](https://nodejs.org/en/) (v10.18.1) Install the dependencies and devDependencies and start the server.
 
     $ cd /kanbn_board
     $ npm install
